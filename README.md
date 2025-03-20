@@ -1,2 +1,1 @@
 # medicine_info
-# medicine

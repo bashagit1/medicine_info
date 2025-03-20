@@ -75,6 +75,9 @@ h3 {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .stButton>button:hover {
@@ -123,6 +126,9 @@ h3 {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .stRadio>div>div>div:hover {
