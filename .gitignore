@@ -1,0 +1,18 @@
+# Python environment
+nhmapp/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Data files
+__data__/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+.git/
+
+# Streamlit Cloud specific
+.env
