@@ -16,3 +16,8 @@ Thumbs.db
 
 # Streamlit Cloud specific
 .env
+
+# Database files
+*.db
+*.sqlite3
+ nursing_home.db
