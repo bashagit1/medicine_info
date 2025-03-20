@@ -75,9 +75,6 @@ h3 {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
 .stButton>button:hover {
@@ -126,9 +123,6 @@ h3 {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
 .stRadio>div>div>div:hover {
@@ -397,7 +391,7 @@ else:
     st.markdown('<div class="main-title"><img src="https://cdn-icons-png.flaticon.com/512/1105/1105708.png" class="pill-icon" alt="pill"> <h1>Medication Information Lookup</h1></div>', unsafe_allow_html=True)
 
     # Navigation menu
-    menu = ["🔍 Text Lookup", "🖼️ Image Upload", "📸 Camera Snapshot"]
+    menu = ["🔍 Text Lookup", "🖼️ Image Upload"]
     choice = st.radio("Select Lookup Method", menu, horizontal=True)
 
     # Text Lookup Section
@@ -452,58 +446,6 @@ else:
                 
                 # Add to query history
                 st.session_state.query_history.append(f"Image Upload: {text[:50]}...")
-                
-                # Get medication information
-                prompt = f"""
-                Analyze the following text extracted from a medication image:
-                ```
-                {text}
-                ```
-                
-                Identify any medication names mentioned and provide detailed information about them.
-                
-                For each identified medication, include:
-                - Primary use
-                - Benefits
-                - Side effects
-                - Patient selection criteria
-                - Dosage guidelines
-                - Important precautions
-                
-                Format the response as markdown.
-                """
-                
-                # OpenAI API call
-                response = openai_client.chat.completions.create(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {"role": "system", "content": "You are a medical information assistant."},
-                        {"role": "user", "content": prompt}
-                    ]
-                )
-                
-                info = response.choices[0].message.content
-                st.markdown(info)
-
-    # Camera Snapshot Section
-    elif choice == "📸 Camera Snapshot":
-        st.session_state.navigation_history.append("camera_snapshot")
-        st.header("📸 Lookup by Camera Snapshot")
-        
-        st.write("Take a photo of the medication packaging")
-        picture = st.camera_input("📸 Take a snapshot")
-        
-        if picture:
-            image = Image.open(picture)
-            st.image(image, caption="Captured Medication Image", use_container_width=True)
-            
-            with st.spinner("🔍 Analyzing image..."):
-                # Analyze image with multiple methods
-                text = analyze_image(image)
-                st.write("🔍 Text extracted from image:", text)
-                
-                # Add to query history
-                st.session_state.query_history.append(f"Camera Snapshot: {text[:50]}...")
                 
                 # Get medication information
                 prompt = f"""
